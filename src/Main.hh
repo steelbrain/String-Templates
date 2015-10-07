@@ -2,8 +2,12 @@
 
 class StringTemplates {
   public static (string, string) $Wrappers = tuple('{', '}');
-  public static function Render(string $Content, array $Parameters): string {
-    return preg_replace_callback('/'. static::$Wrappers[0] . '([\w\.]+)' . static::$Wrappers[1] .'/', function($matches) use ($Parameters) {
+  public static function Render(string $Content, array $Parameters, ?(string, string) $Wrappers = null): string {
+    if ($Wrappers == null) {
+      $Wrappers = static::$Wrappers;
+    }
+
+    return preg_replace_callback('/\\'. $Wrappers[0] . '([\w\.]+)\\' . $Wrappers[1] .'/', function($matches) use ($Parameters) {
       if (strpos($matches[1], '.') === false) {
         return array_key_exists($matches[1], $Parameters) ? $Parameters[$matches[1]] : $matches[0];
       } else {
@@ -21,10 +25,3 @@ class StringTemplates {
     }, $Content);
   }
 }
-
-echo StringTemplates::Render('Hello {name}, I am {greet.message} to meet you', [
-  'name' => 'steel',
-  'greet' => [
-    'message' => 'honored'
-  ]
-]), "\n";
