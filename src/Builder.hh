@@ -9,7 +9,7 @@ class StringBuilder implements Stringish {
   }
   public function render(mixed $Line, ?array $Parameters = null, ?(string, string) $Wrappers = null): this {
     if ($Parameters === null) {
-      return $this->addLine($Line);
+      return $this->add($Line);
     } else {
       $this->__validate($Line);
       $this->Contents .= StringTemplates::Render((string) $Line, $Parameters, $Wrappers);
