@@ -5,6 +5,8 @@ Super lightweight string templating in PHP/Hack.
 
 #### API
 ```js
+namespace steelbrain;
+
 class StringTemplates {
   public static (string, string) $Wrappers = tuple('{', '}')
   public static function Render(string $Content, array $Parameters, ?(string, string) $Wrappers = null): string
@@ -24,6 +26,9 @@ class StringBuilder implements Stringish {
 
 ```hack
 <?hh
+use steelbrain\StringBuilder;
+use steelbrain\StringTemplates;
+
 $Contents = (string) StringBuilder::create()
   ->addLine('apt-get update')
   ->addLine('apt-get upgrade')

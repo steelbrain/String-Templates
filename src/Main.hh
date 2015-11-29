@@ -1,4 +1,6 @@
 <?hh
+namespace steelbrain;
+use Exception;
 
 class StringTemplates {
   public static (string, string) $Wrappers = tuple('{', '}');
