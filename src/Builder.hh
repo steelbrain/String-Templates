@@ -7,15 +7,15 @@ class StringBuilder implements Stringish {
   public function __toString(): string {
     return $this->Contents;
   }
-  public function render(mixed $Line, ?array $Parameters = null, ?(string, string) $Wrappers = null): this {
+  public function render(mixed $Line, ?array $Parameters = null, ?(string, string) $Wrappers = null, bool $isHTML = false): this {
     if ($Parameters === null) {
       return $this->add($Line);
     } else {
-      return $this->add(StringTemplates::Render((string) $Line, $Parameters, $Wrappers));
+      return $this->add(StringTemplates::Render((string) $Line, $Parameters, $Wrappers, $isHTML));
     }
   }
-  public function renderLine(mixed $Line, ?array $Parameters = null, ?(string, string) $Wrappers = null): this {
-    return $this->render("$Line\n", $Parameters, $Wrappers);
+  public function renderLine(mixed $Line, ?array $Parameters = null, ?(string, string) $Wrappers = null, bool $isHTML = false): this {
+    return $this->render("$Line\n", $Parameters, $Wrappers, $isHTML);
   }
   public function addLine(mixed $Line): this {
     $this->Contents .= "$Line\n";

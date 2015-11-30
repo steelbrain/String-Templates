@@ -9,12 +9,12 @@ namespace steelbrain;
 
 class StringTemplates {
   public static (string, string) $Wrappers = tuple('{', '}')
-  public static function Render(string $Content, array $Parameters, ?(string, string) $Wrappers = null): string
+  public static function Render(string $Content, array $Parameters, ?(string, string) $Wrappers = null, bool $isHTML = false): string
 }
 class StringBuilder implements Stringish {
   public function __construct(public string $Contents = '')
-  public function render(mixed $Line, ?array $Parameters = null, ?(string, string) $Wrappers = null): this
-  public function renderLine(mixed $Line, ?array $Parameters = null, ?(string, string) $Wrappers = null): this
+  public function render(mixed $Line, ?array $Parameters = null, ?(string, string) $Wrappers = null, bool $isHTML = false): this
+  public function renderLine(mixed $Line, ?array $Parameters = null, ?(string, string) $Wrappers = null, bool $isHTML = false): this
   public function addLine(mixed $Line): this
   public function add(mixed $Line): this
   public static function create(string $Contents = ''): StringBuilder

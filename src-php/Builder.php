@@ -8,15 +8,15 @@ class StringBuilder {
   public function __toString() {
     return $this->Contents;
   }
-  public function render($Line, $Parameters = null, $Wrappers = null) {
+  public function render($Line, $Parameters = null, $Wrappers = null, $isHTML = false) {
     if ($Parameters === null) {
       return $this->add($Line);
     } else {
-      return $this->add(StringTemplates::Render((string) $Line, $Parameters, $Wrappers));
+      return $this->add(StringTemplates::Render((string) $Line, $Parameters, $Wrappers, $isHTML));
     }
   }
-  public function renderLine($Line, $Parameters = null, $Wrappers = null) {
-    return $this->render("$Line\n", $Parameters, $Wrappers);
+  public function renderLine($Line, $Parameters = null, $Wrappers = null, $isHTML = false) {
+    return $this->render("$Line\n", $Parameters, $Wrappers, $isHTML);
   }
   public function addLine($Line) {
     $this->Contents .= "$Line\n";
